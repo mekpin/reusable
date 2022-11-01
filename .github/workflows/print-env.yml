@@ -34,7 +34,7 @@ jobs:
 
   broadcast:
     needs: define
-    runs-on: ${{ jobs.define.outputs.nama_runner}}
+    runs-on: ${{ define.outputs.nama_runner}}
     steps:
       - name: input to variable service_name
         id: naming 
