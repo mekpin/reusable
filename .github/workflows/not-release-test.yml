@@ -1,0 +1,24 @@
+name: testing without release
+## nongol di action 
+on: workflow_dispatch
+
+jobs:
+
+  print:
+    uses: mekpin/reusable/.github/workflows/print-env.yml
+    if: (github.event.base_ref == 'refs/heads/main') && (endsWith(github.event.ref, 'dev'))
+    with:
+      service_name: ansible-new-instance
+    secrets:
+      ssh_token: ${{ secrets.SSH_TOKEN }}
+
+
+  calculate:
+    needs: print
+    if: (github.event.base_ref == 'refs/heads/main') && (endsWith(github.event.ref, 'dev'))
+    uses: mekpin/reusable/.github/workflows/calculate.yml
+    with:
+      service_nama: wahahaha
+    secrets:
+      ssh_token: ${{ secrets.SSH_TOKEN }}
+
