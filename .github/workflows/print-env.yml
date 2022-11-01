@@ -5,6 +5,8 @@ on:
         description: 'Name of service/web app repository'
         required: false
         type: string
+      secrets:
+        required: true
 
 env:
 #  untuk default isi dengan nama repo
