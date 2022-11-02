@@ -7,12 +7,18 @@ on:
         type: string
  #     secrets:
  #       required: true
+      service_nama:
+        description: 'ngetes tulisan wahahaaha'
+        required: false
+        type: string
 
 
 env:
 #  untuk default isi dengan nama repo
 #  SERVICE_NAME: ${{ inputs.service_name || github.event.repository.name  }}
   SERVICE_NAME: ${{ inputs.service_name || 'ga masuk'  }}
+  SERVICE_NAMA: ${{ inputs.service_nama || 'Wehehe'  }}
+
 
 jobs:
   hitung:
