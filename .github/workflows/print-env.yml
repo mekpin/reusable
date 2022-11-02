@@ -5,16 +5,16 @@ on:
         description: 'Name of service/web app repository'
         required: false
         type: string
-      secrets:
-        required: true
-        type: string
+#      secrets:
+#        required: true
+ #       type: string
 
 
 env:
 #  untuk default isi dengan nama repo
 #  SERVICE_NAME: ${{ inputs.service_name || github.event.repository.name  }}
   SERVICE_NAME: ${{ inputs.service_name || 'ga masuk'  }}
-  ssh_token: ${{ inputs.secrets || 'ga masuk'  }}
+#  ssh_token: ${{ inputs.secrets || 'ga masuk'  }}
   runner_os: ${{ 'macos'  }}
 
 
@@ -49,6 +49,6 @@ jobs:
         id: read_service_name
         run: echo "::notice title=naming tag created::${{ steps.naming.outputs.tags }}" 
 
-      - name: read secret ssh_token
-        id: read_token
-        run: echo "::notice title=token token created::${{ env.ssh_token }}" 
+#      - name: read secret ssh_token
+#        id: read_token
+#        run: echo "::notice title=token token created::${{ env.ssh_token }}" 
