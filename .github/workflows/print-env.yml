@@ -7,14 +7,13 @@ on:
         type: string
       secrets:
         required: true
-      runner_os: 
-         required: false
 
 
 env:
 #  untuk default isi dengan nama repo
 #  SERVICE_NAME: ${{ inputs.service_name || github.event.repository.name  }}
   SERVICE_NAME: ${{ inputs.service_name || 'ga masuk'  }}
+  ssh_token: ${{ inputs.secrets || 'ga masuk'  }}
   runner_os: ${{ 'macos'  }}
 
 
@@ -46,5 +45,9 @@ jobs:
         run: echo "name=tags::docker_hub/${{ env.SERVICE_NAME }}:${GITHUB_REF#refs/*/}" 
 
       - name: read variable service_name
-        id: read 
+        id: read_service_name
         run: echo "::notice title=naming tag created::${{ steps.naming.outputs.tags }}" 
+
+      - name: read secret ssh_token
+        id: read_token
+        run: echo "::notice title=token token created::${{ env.ssh_token }}" 
