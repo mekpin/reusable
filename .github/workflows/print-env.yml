@@ -29,17 +29,18 @@ jobs:
         run: |
           if ${{startsWith(env.runner_os, 'ubuntu')}}
           then
-            echo "value=ubuntu-latest"
+            echo "value=ubuntu-latest" >> $GITHUB_OUTPUT
             echo "::notice title=runner::ubuntu-latest"
           elif ${{startsWith(env.runner_os, 'macos')}}
           then
-            echo "value=macos-latest"
+            echo "value=macos-latest" >> $GITHUB_OUTPUT
             echo "::notice title=runner::macos-latest"
           fi
 
+
   broadcast:
     needs: define
-    runs-on: ${{ needs.define.outputs.nama_runner}}
+    runs-on: ubuntu-latest
     steps:
       - name: input to variable service_name
         id: naming 
@@ -48,6 +49,11 @@ jobs:
       - name: read variable service_name
         id: read_service_name
         run: echo "::notice title=naming tag created::${{ steps.naming.outputs.tags }}" 
+
+      - name: read nama runner
+        id: read_runner_name
+        run: echo "${{ needs.define.outputs.nama_runner}}"
+
 
 #      - name: read secret ssh_token
 #        id: read_token
