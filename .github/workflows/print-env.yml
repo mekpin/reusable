@@ -7,11 +7,16 @@ on:
         type: string
       secrets:
         required: true
+      runner_os: 
+         required: false
+
 
 env:
 #  untuk default isi dengan nama repo
 #  SERVICE_NAME: ${{ inputs.service_name || github.event.repository.name  }}
   SERVICE_NAME: ${{ inputs.service_name || 'ga masuk'  }}
+  runner_os: ${{ 'macos'  }}
+
 
 
 jobs:
@@ -22,19 +27,19 @@ jobs:
     steps:
       - id: declarerunner
         run: |
-          if ${{startsWith(inputs.runner_os, 'ubuntu')}}
+          if ${{startsWith(env.runner_os, 'ubuntu')}}
           then
-            echo "::set-output name=value::ubuntu-latest"
+            echo "value=ubuntu-latest"
             echo "::notice title=runner::ubuntu-latest"
-          elif ${{startsWith(inputs.runner_os, 'macos')}}
+          elif ${{startsWith(env.runner_os, 'macos')}}
           then
-            echo "::set-output name=value::macos-latest"
+            echo "value=macos-latest"
             echo "::notice title=runner::macos-latest"
           fi
 
   broadcast:
     needs: define
-    runs-on: ${{ define.outputs.nama_runner}}
+    runs-on: ${{ needs.define.outputs.nama_runner}}
     steps:
       - name: input to variable service_name
         id: naming 
