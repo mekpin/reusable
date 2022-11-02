@@ -26,4 +26,4 @@ jobs:
     steps:
       - id: menghitung
         name: menghitung 2+3
-        run: echo 2+3
+        run: echo {2+3}
