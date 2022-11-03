@@ -44,7 +44,7 @@ jobs:
     steps:
       - name: input to variable service_name
         id: naming 
-        run: echo "tags=mekpin/${{ env.SERVICE_NAME }}:${GITHUB_REF#refs/*/}" >> $GITHUB_OUTPUT
+        run: echo "tags=mekpin/${{ env.SERVICE_NAME }}:${GITHUB_REF#refs/*/}"
 
       - name: read output tags dari job yang sama
         id: read_service_name
