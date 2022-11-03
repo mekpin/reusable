@@ -31,6 +31,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - id: membaca_with
-        name: read with caller
+        name: read with caller kalau dari env wahahaaha kalau bukan Wehehe
         run: echo ${{ inputs.service_nama }}
 
