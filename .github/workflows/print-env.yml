@@ -44,15 +44,15 @@ jobs:
     steps:
       - name: input to variable service_name
         id: naming 
-        run: echo "name=tags::docker_hub/${{ env.SERVICE_NAME }}:${GITHUB_REF#refs/*/}" 
+        run: echo "tags=docker_hub/${{ env.SERVICE_NAME }}:${GITHUB_REF#refs/*/}"
 
-      - name: read variable service_name
+      - name: read output tags dari job yang sama
         id: read_service_name
         run: echo "::notice title=naming tag created::${{ steps.naming.outputs.tags }}" 
 
-      - name: read nama runner
+      - name: read nama runner dari jobs lain
         id: read_runner_name
-        run: echo "${{ needs.define.outputs.nama_runner}}"
+        run: echo "berikut hasil readnya ---> ${{ needs.define.outputs.nama_runner}}"
 
 
 #      - name: read secret ssh_token
