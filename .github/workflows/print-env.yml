@@ -20,7 +20,7 @@ env:
 
 
 jobs:
-  define:
+  define-runner:
     runs-on: ubuntu-latest
     outputs: 
       nama_runner: ${{ steps.declarerunner.outputs.value }}
@@ -31,7 +31,7 @@ jobs:
           then
             echo "value=ubuntu-latest" >> $GITHUB_OUTPUT
             echo "::notice title=runner::ubuntu-latest"
-          elif ${{startsWith(env.runner_os, 'macos')}}
+          elif ${{startsWith(env.runner_os, 'mac')}}
           then
             echo "value=macos-latest" >> $GITHUB_OUTPUT
             echo "::notice title=runner::macos-latest"
@@ -39,12 +39,12 @@ jobs:
 
 
   broadcast:
-    needs: define
+    needs: define-runner
     runs-on: ubuntu-latest
     steps:
       - name: input to variable service_name
         id: naming 
-        run: echo "tags=docker_hub/${{ env.SERVICE_NAME }}:${GITHUB_REF#refs/*/}" >> $GITHUB_OUTPUT
+        run: echo "tags=mekpin/${{ env.SERVICE_NAME }}:${GITHUB_REF#refs/*/}" >> $GITHUB_OUTPUT
 
       - name: read output tags dari job yang sama
         id: read_service_name
@@ -52,7 +52,7 @@ jobs:
 
       - name: read nama runner dari jobs lain
         id: read_runner_name
-        run: echo "berikut hasil readnya ---> ${{ needs.define.outputs.nama_runner}}"
+        run: echo "berikut hasil readnya ---> ${{ needs.define-runner.outputs.nama_runner}}"
 
 
 #      - name: read secret ssh_token
