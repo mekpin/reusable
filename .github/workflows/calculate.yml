@@ -30,7 +30,7 @@ jobs:
   baca:
     runs-on: ubuntu-latest
     steps:
-      - id: membaca with caller
+      - id: membaca_with
         name: read with caller
         run: echo ${{ inputs.service_nama }}
 
