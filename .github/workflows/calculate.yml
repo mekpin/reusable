@@ -26,4 +26,11 @@ jobs:
     steps:
       - id: menghitung
         name: menghitung 2+3
-        run: echo {2+3}
+        run: echo ${2+3}
+  baca:
+    runs-on: ubuntu-latest
+    steps:
+      - id: membaca with caller
+        name: read with caller
+        run: echo ${{ inputs.service_nama }}
+
