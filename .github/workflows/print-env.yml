@@ -62,25 +62,33 @@ jobs:
         
       - name: read github action caller branch name using GITHUB_REF_NAME
         id: read_caller_branch
-        run: |
-              echo "branch_name=${GITHUB_REF_NAME}" >> $GITHUB_OUTPUT
-              echo "$branch_name"
+        run: echo "branch_name=${GITHUB_REF_NAME}" >> $GITHUB_OUTPUT
+              
+      - run: echo "${{steps.read_caller_branch.outputs.branch_name}}"
         
       - name: read github action caller branch name using GITHUB_BASE_REF
         id: read_caller_branch_base_ref
-        run: echo "${{env.GITHUB_BASE_REF}}"
+        run: echo "branch_name=${{env.GITHUB_BASE_REF}}" >> $GITHUB_OUTPUT
+        
+      - run: echo "${{steps.read_caller_branch_base_ref.outputs.branch_name}}"
 
       - name: read github action caller branch name using github.event.base_ref
         id: read_caller_branch_github_event_base_ref
-        run: echo "(github.event.base_ref)"
+        run: echo "branch_name=(github.event.base_ref)" >> $GITHUB_OUTPUT
+        
+      - run: echo "${{steps.read_caller_branch_github_event_base_ref.outputs.branch_name}}"
         
       - name: read github action caller branch name using GITHUB_HEAD_REF
         id: read_caller_branch_head_ref
-        run: echo "${{env.GITHUB_HEAD_REF}}"
+        run: echo "branch_name=${{env.GITHUB_HEAD_REF}}" >> $GITHUB_OUTPUT
+        
+      - run: echo "${{steps.read_caller_branch_head_ref.outputs.branch_name}}"
 
       - name: read github action caller branch name using github.event.head_ref
         id: read_caller_branch_github_event_head_ref
-        run: echo "${github.event.head_ref}"
+        run: echo "branch_name=${github.event.head_ref}" >> $GITHUB_OUTPUT
+        
+      - run: echo "${{steps.read_caller_branch_github_event_head_ref.outputs.branch_name}}"
         
       - name: write github action caller branch name using GITHUB_HEAD_REF to BUILD_COMMAND env
         id: write_caller_branch_name
@@ -89,6 +97,8 @@ jobs:
       - name: read github action caller using BUILD_COMMAND env
         id: read_caller_branch_name
         run: echo "keluarin base_ref $BUILD_COMMAND"
+
+      - run: echo "${{steps.read_caller_branch_github_event_head_ref.outputs.branch_name}}"
         
       - name: read github action inputs build_env
         id: read_input_env
