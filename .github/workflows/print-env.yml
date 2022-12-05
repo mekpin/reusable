@@ -64,7 +64,7 @@ jobs:
 
       - name: read github action caller branch name using GITHUB_REF_NAME
         id: read_caller_branch_name
-        run: echo "${GITHUB_BASE_REF}"
+        run: echo "keluarin base_ref : ${GITHUB_BASE_REF}"
         
       - name: read github action inputs build_env
         id: read_input_env
