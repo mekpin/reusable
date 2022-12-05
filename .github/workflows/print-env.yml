@@ -58,9 +58,13 @@ jobs:
         id: read_runner_name
         run: echo "berikut hasil readnya ---> ${{ needs.define-runner.outputs.nama_runner}}"
         
-      - name: read github action caller branch name
-        id: read_caller_branch_name
+      - name: read github action caller branch name using GITHUB_REF_NAME
+        id: read_caller_branch
         run: echo "${GITHUB_REF_NAME}"
+
+      - name: read github action caller branch name using GITHUB_REF_NAME
+        id: read_caller_branch_name
+        run: echo "${GITHUB_base_NAME}"
         
       - name: read github action inputs build_env
         id: read_input_env
