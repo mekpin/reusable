@@ -60,6 +60,10 @@ jobs:
         id: read_service_name
         run: echo "::notice title=naming tag created::${{ steps.naming.outputs.tags }}" 
 
+      - name: mencoba ambil branch menggunakan ${GITHUB_REF#refs/*/}
+        id: ambil_branch 
+        run: echo "${GITHUB_REF#refs/*/}"
+
       - name: read nama runner dari jobs lain
         id: read_runner_name
         run: echo "berikut hasil readnya ---> ${{ needs.define-runner.outputs.nama_runner}}"
