@@ -64,7 +64,7 @@ jobs:
         id: read_caller_branch
         run: |
               echo "branch_name=${GITHUB_REF_NAME}" >> $GITHUB_OUTPUT
-              echo "${{read_caller_branch.outputs.branch_name}}"
+              echo "$branch_name"
         
       - name: read github action caller branch name using GITHUB_BASE_REF
         id: read_caller_branch_base_ref
