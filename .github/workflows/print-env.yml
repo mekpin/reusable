@@ -53,6 +53,10 @@ jobs:
       - name: read nama runner dari jobs lain
         id: read_runner_name
         run: echo "berikut hasil readnya ---> ${{ needs.define-runner.outputs.nama_runner}}"
+        
+      - name: read github action caller branch name
+        id: read_caller_branch_name
+        run: echo "${GITHUB_REF_NAME}"
 
 
 #      - name: read secret ssh_token
