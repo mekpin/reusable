@@ -64,7 +64,7 @@ jobs:
         
       - name: write github action caller branch name using GITHUB_BASE_REF
         id: write_caller_branch_name
-        run: echo "BUILD_COMMAND=${GITHUB_BASE_REF}" >> $GITHUB_ENV
+        run: echo "BUILD_COMMAND=${GITHUB_HEAD_REF}" >> $GITHUB_ENV
         
 
       - name: read github action caller branch name using GITHUB_REF_NAME
