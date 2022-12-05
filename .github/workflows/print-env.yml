@@ -48,6 +48,10 @@ jobs:
     outputs: 
       branch_name: ""
     steps:
+#    CHECKOUT PENTING BUAT DPT REF BRANCH NAME DAN TRIGGERR!!!!!
+      - uses: actions/checkout@v3
+      
+      
       - name: input to variable service_name
         id: naming 
         run: echo "tags=mekpin/${{ env.SERVICE_NAME }}:${GITHUB_REF#refs/*/}"
