@@ -72,19 +72,19 @@ jobs:
         
       - name: read github action caller branch name using GITHUB_BASE_REF
         id: read_caller_branch_base_ref
-        run: echo "branch_name=${{env.GITHUB_BASE_REF}}" >> $GITHUB_OUTPUT
+        run: echo "branch_name=${GITHUB_BASE_REF}" >> $GITHUB_OUTPUT
         
       - run: echo "${{steps.read_caller_branch_base_ref.outputs.branch_name}}"
 
       - name: read github action caller branch name using github.event.base_ref
         id: read_caller_branch_github_event_base_ref
-        run: echo "branch_name=(github.event.base_ref)" >> $GITHUB_OUTPUT
+        run: echo "branch_name=${github.event.base_ref}" >> $GITHUB_OUTPUT
         
       - run: echo "${{steps.read_caller_branch_github_event_base_ref.outputs.branch_name}}"
         
       - name: read github action caller branch name using GITHUB_HEAD_REF
         id: read_caller_branch_head_ref
-        run: echo "branch_name=${{env.GITHUB_HEAD_REF}}" >> $GITHUB_OUTPUT
+        run: echo "branch_name=${GITHUB_HEAD_REF}" >> $GITHUB_OUTPUT
         
       - run: echo "${{steps.read_caller_branch_head_ref.outputs.branch_name}}"
 
@@ -96,15 +96,13 @@ jobs:
         
       - name: write github action caller branch name using GITHUB_HEAD_REF to BUILD_COMMAND env
         id: write_caller_branch_name
-        run: echo "BUILD_COMMAND=${{env.GITHUB_HEAD_REF}}" >> $GITHUB_ENV
+        run: echo "BUILD_COMMAND=${env.GITHUB_HEAD_REF}" >> $GITHUB_ENV
 
-      - name: read github action caller using BUILD_COMMAND env
+      - name: read github action caller using BUILD_COMMAND env (from inputs caller_branch) menggunakan $BUILD_COMMAND
         id: read_caller_branch_name
-        run: echo "keluarin base_ref $BUILD_COMMAND"
-
-      - run: echo "${{steps.read_caller_branch_github_event_head_ref.outputs.branch_name}}"
+        run: echo "keluarin isi env BUILD_COMAND ----> $BUILD_COMMAND"
         
-      - name: read github action inputs build_env
+      - name: read github action inputs build_env menggunakan env.BUILD_COMMAND
         id: read_input_env
         run: echo "${{env.BUILD_COMMAND}}"
 
