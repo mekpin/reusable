@@ -68,7 +68,7 @@ jobs:
 
       - name: read github action caller branch name using github.event.base_ref
         id: read_caller_branch_github_event_base_ref
-        run: echo "${github.event.base_ref}"
+        run: echo "(github.event.base_ref)"
         
       - name: read github action caller branch name using GITHUB_HEAD_REF
         id: read_caller_branch_head_ref
