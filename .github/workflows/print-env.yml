@@ -106,7 +106,7 @@ jobs:
         
       - name: write github action caller branch name using GITHUB_HEAD_REF to BUILD_COMMAND env
         id: write_caller_branch_name
-        run: echo "BUILD_COMMAND=${env.GITHUB_HEAD_REF}" >> $GITHUB_ENV
+        run: echo "BUILD_COMMAND=${{env.GITHUB_HEAD_REF}}" >> $GITHUB_ENV
 
       - name: read github action caller using BUILD_COMMAND env (from inputs caller_branch) menggunakan $BUILD_COMMAND
         id: read_caller_branch_name
