@@ -64,7 +64,7 @@ jobs:
         
       - name: read github action inputs build_env
         id: read_input_env
-        run: echo "${env.BUILD_COMMAND}"
+        run: echo "${{env.BUILD_COMMAND}}"
 
 
 #      - name: read secret ssh_token
