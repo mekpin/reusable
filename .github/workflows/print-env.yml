@@ -73,6 +73,12 @@ jobs:
         run: echo "branch_name=${GITHUB_REF_NAME}" >> $GITHUB_OUTPUT
               
       - run: echo "${{steps.read_caller_branch.outputs.branch_name}}"
+      
+      - name: read github action caller branch name using github.ref_name
+        id: read_caller_branch_ref_name
+        run: echo "branch_name=${github.ref_name}" >> $GITHUB_OUTPUT
+              
+      - run: echo "${{steps.read_caller_branch_ref_name.outputs.branch_name}}"
         
       - name: read github action caller branch name using GITHUB_BASE_REF
         id: read_caller_branch_base_ref
