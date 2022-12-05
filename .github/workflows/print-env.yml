@@ -60,19 +60,19 @@ jobs:
         
       - name: read github action caller branch name using GITHUB_REF_NAME
         id: read_caller_branch
-        run: echo "${env.GITHUB_REF_NAME}"
+        run: echo "${{env.GITHUB_REF_NAME}}"
         
       - name: read github action caller branch name using GITHUB_BASE_REF
         id: read_caller_branch_base_ref
-        run: echo "${env.GITHUB_BASE_REF}"
+        run: echo "${{env.GITHUB_BASE_REF}}"
         
       - name: read github action caller branch name using GITHUB_HEAD_REF
         id: read_caller_branch_head_ref
-        run: echo "${env.GITHUB_HEAD_REF}"
+        run: echo "${{env.GITHUB_HEAD_REF}}"
         
       - name: write github action caller branch name using GITHUB_HEAD_REF to BUILD_COMMAND env
         id: write_caller_branch_name
-        run: echo "BUILD_COMMAND=${env.GITHUB_HEAD_REF}" >> $GITHUB_ENV
+        run: echo "BUILD_COMMAND=${{env.GITHUB_HEAD_REF}}" >> $GITHUB_ENV
         
 
       - name: read github action caller using BUILD_COMMAND env
