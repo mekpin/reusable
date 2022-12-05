@@ -19,7 +19,7 @@ env:
   SERVICE_NAME: ${{ inputs.service_name || 'ga masuk'  }}
 #  ssh_token: ${{ inputs.secrets || 'ga masuk'  }}
   runner_os: ${{ 'macos'  }}
-  BUILD_ENV: ${{ inputs.caller_branch }}
+  BUILD_COMMAND: ${{ inputs.caller_branch }}
 
 
 
@@ -64,7 +64,7 @@ jobs:
         
       - name: read github action inputs build_env
         id: read_input_env
-        run: echo "${env.BUILD_ENV}"
+        run: echo "${env.BUILD_COMMAND}"
 
 
 #      - name: read secret ssh_token
