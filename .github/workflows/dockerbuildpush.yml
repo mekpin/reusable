@@ -18,6 +18,7 @@ on:
 
 env:
   SERVICE_NAME: ${{ inputs.service_name || github.event.repository.name  }}
+  DHUB_USER: ${{ secrets.DHUB_USERNAME }}
 
 jobs:
 
@@ -29,7 +30,7 @@ jobs:
 
     steps:
       - name: check secrets
-        run: echo "${{secrets.DHUB_USERNAME}}"
+        run: echo "${{env.DHUB_USER}}"
       - uses: actions/checkout@v3
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
