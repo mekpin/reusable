@@ -39,7 +39,7 @@ jobs:
       - name: check env 4
         run: echo $env.ASAL_ASALAN
       - name: check env 5
-        run: echo "${{ ASAL_ASALAN }}"
+        run: echo "$env.ASAL_ASALAN"
       - name: check env 6
         run: echo "${{ env.ASAL_ASALAN }}"
 #       - name: check secret 1
