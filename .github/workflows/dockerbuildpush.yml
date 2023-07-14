@@ -32,28 +32,28 @@ jobs:
     steps:
       - name: check env 1
         run: echo ${{ env.ASAL_ASALAN }}
-      - name: check env 2
-        run: echo $ASAL_ASALAN
-      - name: check env 3
-        run: echo ${ env.ASAL_ASALAN }
-      - name: check env 4
-        run: echo ${{ ASAL_ASALAN }}
-      - name: check env 5
-        run: echo $env.ASAL_ASALAN
-      - name: check env 6
-        run: echo "${{ env.ASAL_ASALAN }}"
-      - name: check secret 1
-        run: echo ${{ env.DHUB_USER }}
-      - name: check secret 2
-        run: echo ${{ env.DHUB_USER }}
-      - name: check secret 3
-        run: echo ${{ env.DHUB_USER }}
-      - name: check secret 4
-        run: echo ${{ env.DHUB_USER }}
-      - name: check secret 5
-        run: echo ${{ env.DHUB_USER }}
-      - name: check secret 6
-        run: echo ${{ env.DHUB_USER }}                
+#       - name: check env 2
+#         run: echo $ASAL_ASALAN
+#       - name: check env 3
+#         run: echo ${ env.ASAL_ASALAN }
+#       - name: check env 4
+#         run: echo ${{ ASAL_ASALAN }}
+#       - name: check env 5
+#         run: echo $env.ASAL_ASALAN
+#       - name: check env 6
+#         run: echo "${{ env.ASAL_ASALAN }}"
+#       - name: check secret 1
+#         run: echo ${{ env.DHUB_USER }}
+#       - name: check secret 2
+#         run: echo ${{ env.DHUB_USER }}
+#       - name: check secret 3
+#         run: echo ${{ env.DHUB_USER }}
+#       - name: check secret 4
+#         run: echo ${{ env.DHUB_USER }}
+#       - name: check secret 5
+#         run: echo ${{ env.DHUB_USER }}
+#       - name: check secret 6
+#         run: echo ${{ env.DHUB_USER }}                
         
         
         
