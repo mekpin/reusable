@@ -30,7 +30,7 @@ jobs:
 
     steps:
       - name: check secrets
-        run: echo "${{env.DHUB_USER}}"
+        run: echo "$DHUB_USER"
       - uses: actions/checkout@v3
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
