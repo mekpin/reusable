@@ -1,0 +1,107 @@
+name: Build Docker Image
+
+on:
+  workflow_call:
+    inputs:
+      service_name:
+        description: 'Name of service/web app'
+        required: false
+        type: string
+      target_port:
+        required: false
+        type: number
+        default: 3300
+      env_file:
+        description: 'Use to load environment variable from file'
+        required: false
+        type: string
+    secrets:
+      dhub_username:
+        required: true
+      dhub_token:
+        required: true
+
+env:
+  SERVICE_NAME: ${{ inputs.service_name || github.event.repository.name  }}
+
+jobs:
+
+  build-push:
+    runs-on: ubuntu-latest
+
+    outputs:
+      imageTag: ${{ steps.meta.outputs.tags }}
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - id: setJSON
+        run: echo "baseImageJSON=${{ needs.fetch-prop.outputs.manifest }}" >> $GITHUB_OUTPUT 
+
+      - name: read base_image from fetch-prop jobs
+        run: echo "${{needs.fetch-prop.outputs.base_image}}"
+
+      - name: Docker Meta
+        id: meta
+        run: echo "tags=mekpin/${{ env.SERVICE_NAME }}:${GITHUB_REF#refs/*/}" >> $GITHUB_OUTPUT 
+
+      - name: define build command env
+        id: build_command
+        run: |
+          if ${{endsWith(github.event.base_ref, 'staging')}}
+          then
+           echo "command=staging" >> $GITHUB_OUTPUT
+          elif ${{endsWith(github.event.base_ref, 'production')}}
+          then
+           echo "command=production" >> $GITHUB_OUTPUT
+          else
+           echo "command=development" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Notice Meta
+        run: echo "::notice title=meta tag created::${{ steps.meta.outputs.tags }}"
+
+      - name: Notice Build Command
+        run: echo "::notice title=build command created::${{ steps.build_command.outputs.command }}"
+
+      - name: Set Context Default
+        run: docker context use default
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2.1.0
+        with:
+          username: ${{ secrets.cr_username }} 
+          password: ${{ secrets.cr_token }}
+
+      - name: Load Environment Variable
+        if: inputs.env_file != ''
+        run: source ${{ inputs.env_file }}
+
+      - name: Build Docker
+        uses: docker/build-push-action@v3.2.0
+        with:
+          context: .
+          outputs: type=docker
+          tags: ${{ steps.meta.outputs.tags }}
+          build-args: |
+            NODE_BASE=${{needs.fetch-prop.outputs.base_image}}
+            FE_BUILD_ENV=${{ steps.build_command.outputs.command }}
+
+      - name: Check Build Result
+        run: |
+          docker images | grep ${{ env.SERVICE_NAME }} > tmp_docker
+          if grep -wq ${GITHUB_REF#refs/*/} tmp_docker; then echo "::notice title=image build verified::${{ steps.meta.outputs.tags }} image found" ; else echo "::error title=build error::${{ steps.meta.outputs.tags }} not found"; fi
+      
+      - name: Push Docker Image to Container Registry
+        run: docker push ${{ steps.meta.outputs.tags }}
+
+      - name: runner built image cleanup
+        run: |
+          docker context use default
+          docker image rm -f ${{ steps.meta.outputs.tags }}
+          docker rmi -f $(docker images -f "dangling=true" -q) || true
