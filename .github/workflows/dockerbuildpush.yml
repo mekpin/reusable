@@ -19,7 +19,7 @@ on:
 env:
   SERVICE_NAME: ${{ inputs.service_name || github.event.repository.name  }}
   DHUB_USER: ${{ secrets.DHUB_USERNAME }}
-  ASAL: yuhuw
+  ASAL_ASALAN: yuhuw
 
 jobs:
 
@@ -31,17 +31,17 @@ jobs:
 
     steps:
       - name: check env 1
-        run: echo ${{ env.ASAL }}
+        run: echo ${{ env.ASAL_ASALAN }}
       - name: check env 2
-        run: echo $ASAL
+        run: echo $ASAL_ASALAN
       - name: check env 3
-        run: echo ${ env.ASAL }
+        run: echo ${ env.ASAL_ASALAN }
       - name: check env 4
-        run: echo ${{ ASAL }}
+        run: echo ${{ ASAL_ASALAN }}
       - name: check env 5
-        run: echo $env.ASAL }}
+        run: echo $env.ASAL_ASALAN
       - name: check env 6
-        run: echo "${{ env.ASAL }}"
+        run: echo "${{ env.ASAL_ASALAN }}"
       - name: check secret 1
         run: echo ${{ env.DHUB_USER }}
       - name: check secret 2
