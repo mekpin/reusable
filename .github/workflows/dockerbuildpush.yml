@@ -15,11 +15,6 @@ on:
         description: 'Use to load environment variable from file'
         required: false
         type: string
-    secrets:
-      dhub_username:
-        required: true
-      dhub_token:
-        required: true
 
 env:
   SERVICE_NAME: ${{ inputs.service_name || github.event.repository.name  }}
@@ -75,8 +70,8 @@ jobs:
       - name: Login to Docker Hub
         uses: docker/login-action@v2.1.0
         with:
-          username: ${{ secrets.cr_username }} 
-          password: ${{ secrets.cr_token }}
+          username: ${{ secrets.dhub_username }}
+          password: ${{ secrets.dhub_token }}
 
       - name: Load Environment Variable
         if: inputs.env_file != ''
