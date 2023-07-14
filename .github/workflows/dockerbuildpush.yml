@@ -46,11 +46,11 @@ jobs:
         run: echo "${{ env.ASAL_ASALAN }}"
         
 ###################################################################################################         
-      - name: check env 1
+      - name: check env diisi secret 1
         run: echo ${{ env.DHUB_USERS }}
-      - name: check env 2
+      - name: check env diisi secret 2
         run: echo $DHUB_USERS
-      - name: check env 3
+      - name: check env diisi secret 3
         run: echo ${{env.DHUB_USERS}}
 #         cara 4 salah
 #       - name: check env 4
@@ -58,7 +58,7 @@ jobs:
 #         #cara 5 salah
 #       - name: check env 5
 #         run: echo "$env.ASAL_ASALAN"
-      - name: check env 6
+      - name: check env diisi secret 6
         run: echo "${{ env.DHUB_USERS }}"
         
       - uses: actions/checkout@v3
