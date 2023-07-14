@@ -18,7 +18,7 @@ on:
 
 env:
   SERVICE_NAME: ${{ inputs.service_name || github.event.repository.name  }}
-  DHUB_USER: ${{ secrets.DHUB_USERNAME }}
+  DHUB_USERS: ${{ secrets.DHUB_USERNAME }}
   ASAL_ASALAN: yuhuw
 
 jobs:
@@ -36,26 +36,30 @@ jobs:
         run: echo $ASAL_ASALAN
       - name: check env 3
         run: echo ${{env.ASAL_ASALAN}}
-      - name: check env 4
-        run: echo $env.ASAL_ASALAN
-      - name: check env 5
-        run: echo "$env.ASAL_ASALAN"
+#         cara 4 salah
+#       - name: check env 4
+#         run: echo $env.ASAL_ASALAN
+#         #cara 5 salah
+#       - name: check env 5
+#         run: echo "$env.ASAL_ASALAN"
       - name: check env 6
         run: echo "${{ env.ASAL_ASALAN }}"
-#       - name: check secret 1
-#         run: echo ${{ env.DHUB_USER }}
-#       - name: check secret 2
-#         run: echo ${{ env.DHUB_USER }}
-#       - name: check secret 3
-#         run: echo ${{ env.DHUB_USER }}
-#       - name: check secret 4
-#         run: echo ${{ env.DHUB_USER }}
-#       - name: check secret 5
-#         run: echo ${{ env.DHUB_USER }}
-#       - name: check secret 6
-#         run: echo ${{ env.DHUB_USER }}                
         
-        
+###################################################################################################         
+      - name: check env 1
+        run: echo ${{ env.DHUB_USERS }}
+      - name: check env 2
+        run: echo $DHUB_USERS
+      - name: check env 3
+        run: echo ${{env.DHUB_USERS}}
+#         cara 4 salah
+#       - name: check env 4
+#         run: echo $env.ASAL_ASALAN
+#         #cara 5 salah
+#       - name: check env 5
+#         run: echo "$env.ASAL_ASALAN"
+      - name: check env 6
+        run: echo "${{ env.DHUB_USERS }}"
         
       - uses: actions/checkout@v3
       - name: Set up QEMU
