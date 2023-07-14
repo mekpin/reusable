@@ -11,10 +11,6 @@ on:
         required: false
         type: number
         default: 3300
-      env_file:
-        description: 'Use to load environment variable from file'
-        required: false
-        type: string
 
 env:
   SERVICE_NAME: ${{ inputs.service_name || github.event.repository.name  }}
@@ -106,10 +102,6 @@ jobs:
         with:
           username: ${{ env.DHUB_USERS }}
           password: ${{ env.DHUB_TOK }}
-
-      - name: Load Environment Variable
-        if: inputs.env_file != ''
-        run: source ${{ inputs.env_file }}
 
       - name: Build Docker
         uses: docker/build-push-action@v3.2.0
