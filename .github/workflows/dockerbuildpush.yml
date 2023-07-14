@@ -35,7 +35,7 @@ jobs:
       - name: check env 2
         run: echo $ASAL_ASALAN
       - name: check env 3
-        run: echo ${ env.ASAL_ASALAN }
+        run: echo ${{env.ASAL_ASALAN}}
 #       - name: check env 4
 #         run: echo ${{ ASAL_ASALAN }}
 #       - name: check env 5
