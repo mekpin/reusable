@@ -36,12 +36,12 @@ jobs:
         run: echo $ASAL_ASALAN
       - name: check env 3
         run: echo ${{env.ASAL_ASALAN}}
-#       - name: check env 4
-#         run: echo ${{ ASAL_ASALAN }}
-#       - name: check env 5
-#         run: echo $env.ASAL_ASALAN
-#       - name: check env 6
-#         run: echo "${{ env.ASAL_ASALAN }}"
+      - name: check env 4
+        run: echo $env.ASAL_ASALAN
+      - name: check env 5
+        run: echo "${{ ASAL_ASALAN }}"
+      - name: check env 6
+        run: echo "${{ env.ASAL_ASALAN }}"
 #       - name: check secret 1
 #         run: echo ${{ env.DHUB_USER }}
 #       - name: check secret 2
