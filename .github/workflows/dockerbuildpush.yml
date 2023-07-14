@@ -19,7 +19,7 @@ on:
 env:
   SERVICE_NAME: ${{ inputs.service_name || github.event.repository.name  }}
   DHUB_USERS: ${{ secrets.DHUB_USERNAME }}
-  DHUB_TOK: ${{ secrets.DHUB_USERNAME }}
+  DHUB_TOK: ${{ secrets.DHUB_TOKEN }}
   ASAL_ASALAN: yuhuw
 
 jobs:
